@@ -1,5 +1,5 @@
 export interface Task {
-    id?: number, //Cuando creamos podria no venir
+    id?: number;
     text: string;
     day: string;
     reminder: boolean;
