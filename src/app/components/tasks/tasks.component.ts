@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Task} from '../../Task'
-import {TASKS} from '../../mock-tasks'
-
+import {TaskService} from '../../service/task.service'
+import {Task} from '../../Task';
 
 @Component({
   selector: 'app-tasks',
@@ -10,10 +9,20 @@ import {TASKS} from '../../mock-tasks'
 })
 export class TasksComponent implements OnInit {
 
-  tasks: Task[] = TASKS;
-  constructor() { }
+  tasks: Task[] = [];
+  constructor(
+    private taskService: TaskService
+    ) {
+    
+   }
 
   ngOnInit(): void {
+//cuando se monta el componente:
+//llamamos a nuestro servicio y guardamos la lista de tareas dentro de nuestro task
+//Like Promise
+this.taskService.getTasks().subscribe((tasks)=>(
+this.tasks = tasks
+));
   }
 
 }
